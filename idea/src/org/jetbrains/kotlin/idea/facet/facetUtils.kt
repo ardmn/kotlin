@@ -33,7 +33,6 @@ import org.jetbrains.kotlin.idea.compiler.configuration.KotlinCommonCompilerArgu
 import org.jetbrains.kotlin.idea.compiler.configuration.KotlinCompilerSettings
 import org.jetbrains.kotlin.idea.framework.JSLibraryStdPresentationProvider
 import org.jetbrains.kotlin.idea.framework.JavaRuntimePresentationProvider
-import org.jetbrains.kotlin.idea.framework.getLibraryProperties
 import org.jetbrains.kotlin.idea.versions.bundledRuntimeVersion
 
 private fun getRuntimeLibraryVersions(
@@ -128,8 +127,8 @@ fun KotlinFacetSettings.initializeIfNeeded(module: Module, rootModel: ModuleRoot
 val TargetPlatformKind<*>.mavenLibraryId: String
     get() {
         return when (this) {
-            is JVMPlatform -> "kotlin-stdlib"
-            is JSPlatform -> "kotlin-js-library"
+            is TargetPlatformKind.Jvm -> "kotlin-stdlib"
+            is TargetPlatformKind.JavaScript -> "kotlin-js-library"
             else -> error("Unexpected platform: $this")
         }
     }
