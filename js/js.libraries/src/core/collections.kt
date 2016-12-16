@@ -58,6 +58,11 @@ public fun <T> setOf(element: T): Set<T> = hashSetOf(element)
 public fun <K, V> mapOf(pair: Pair<K, V>): Map<K, V> = hashMapOf(pair)
 
 /**
+ * Allows to use the index operator for storing values in a mutable map.
+ */
+public inline operator fun <K, V> MutableMap<K, V>.set(key: K, value: V): Unit = asDynamic().set(key, value)
+
+/**
  * Sorts elements in the list in-place according to their natural sort order.
  */
 public fun <T : Comparable<T>> MutableList<T>.sort(): Unit {
